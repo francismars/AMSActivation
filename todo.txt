@@ -1,0 +1,6 @@
+TODO
+
+- Add Multiple Images to show when QR code is paid
+- Make sure images don't repeat
+- Add Image center QR code
+-

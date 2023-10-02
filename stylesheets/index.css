@@ -1,0 +1,34 @@
+body{
+    background-color: black;
+}
+
+.qrcode{
+	width: 100%;
+	height: 100%;
+	padding: 1cqw;
+	margin-top: 0cqw;
+	box-sizing: border-box;
+}
+
+.PayLinkdiv{
+	position: relative;
+	height: 25cqw;
+    width: 25cqw;
+}
+
+.PayLinkgif{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.qrcodeWithdrawal {
+  border: 0px solid #555;
+}
+
+#mainDiv {
+	display: flex;
+	flex-wrap: wrap;
+}
