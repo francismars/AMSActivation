@@ -55,11 +55,16 @@ socket.on('rescreateWithdrawal', (data) => {
 	let qrcodeContainer = document.getElementById(qrToReplaceid);
 	qrcodeContainer.innerHTML = "";
 	qrcodeContainer.classList.add("qrcodeWithdrawal");
-	new QRious({
+
+  //Add frame gif
+  let gifContainer = document.getElementById(qrToReplaceid+"gif");
+  gifContainer.src="images/frame.gif";
+
+  new QRious({
 		element: qrcodeContainer,
 		size: 800,
 		value: data.lnurl,
-		foreground: "black",
+		foreground: "red",
 		background: "orange"
 	});
 });
@@ -73,17 +78,20 @@ socket.on("invoicePaid", body => {
 		let value = payLinksDict[key];
 		let lnurlid = value.id
 		if(lnurlid==paidlnurlid){
-			console.log("Paid for "+key);
-			let qrcodeContainer = document.getElementById(key);
-			qrcodeContainer.src="images/paidqrs/quote-1.png";
-			let gifContainer = document.getElementById(key+"gif");
+      let keyTemp = key
+			console.log("Paid for "+keyTemp);
+			let qrcodeContainer = document.getElementById(keyTemp);
+      let randReward = Math.floor(Math.random() * 30) + 1;
+			let gifContainer = document.getElementById(keyTemp+"gif");
 			gifContainer.src="images/paidqr.gif";
+      setTimeout(() => {
+        qrcodeContainer.src="images/paidqrs/reward_"+randReward+".jpg";
+			}, 650, qrcodeContainer);
 			setTimeout(() => {
 				gifContainer.src="images/transparent.png";
-			}, 2000);
+			}, 2000, gifContainer);
 			invoicesPaidList.push(key)
 			//console.log(invoicesPaidList)
-			let keyTemp = key
 			setTimeout(() => {
 				qrcodeContainer.innerHTML = "";
 				let keyIndex = invoicesPaidList.indexOf(keyTemp)
@@ -118,22 +126,25 @@ socket.on("invoicePaid", body => {
 })
 
 socket.on('prizeWithdrawn', (data) => {
-    console.log(data)
+  console.log(data)
 	let value = payLinksDict[qrToReplaceid];
 	let paidlnurlid = data.lnurlw;
 	let qrcodeContainer = document.getElementById(qrToReplaceid);
 	let gifContainer = document.getElementById(qrToReplaceid+"gif");
 	qrToReplaceid = -1;
 	gifContainer.src="images/paidqr.gif";
+  setTimeout(() => {
+    qrcodeContainer.innerHTML = "";
+  	new QRious({
+  		element: qrcodeContainer,
+  		size: 800,
+  		value: value.lnurl,
+  		foreground: "white",
+  		backgroundAlpha: 0
+  	});
+  }, 650);
 	setTimeout(() => {
 		gifContainer.src="images/transparent.png";
 	}, 2000);
-	qrcodeContainer.innerHTML = "";
-	new QRious({
-		element: qrcodeContainer,
-		size: 800,
-		value: value.lnurl,
-		foreground: "white",
-		backgroundAlpha: 0
-	});
+
 })
