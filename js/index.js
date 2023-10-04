@@ -14,7 +14,7 @@ socket.on('resPayLinks', (data) => {
 	for(let i=0;i<data.length;i++){
 		//console.log(data[i])
 		payLinksDict[data[i].description]={"lnurl":data[i].lnurl,"id":data[i].id}
-	}	
+	}
 	//console.log(payLinksDict)
 	loadPayLinksDOM()
 })
@@ -27,7 +27,7 @@ function loadPayLinksDOM(){
 		qrToReplaceid = "PayLink"+qrToReplace
 		socket.emit('createWithdrawal', {"amount": 2000, "maxWithdrawals": 1});
 	}
-	
+
 	for(var key in payLinksDict) {
 		let value = payLinksDict[key];
 		let lnurl = value.lnurl
@@ -64,8 +64,8 @@ socket.on('rescreateWithdrawal', (data) => {
 		element: qrcodeContainer,
 		size: 800,
 		value: data.lnurl,
-		foreground: "red",
-		background: "orange"
+		foreground: "orange",
+		background: "black"
 	});
 });
 
@@ -88,7 +88,7 @@ socket.on("invoicePaid", body => {
         qrcodeContainer.src="images/paidqrs/reward_"+randReward+".jpg";
 			}, 650, qrcodeContainer);
 			setTimeout(() => {
-				gifContainer.src="images/transparent.png";
+				gifContainer.src="images/payme.gif";
 			}, 2000, gifContainer);
 			invoicesPaidList.push(key)
 			//console.log(invoicesPaidList)
@@ -144,7 +144,7 @@ socket.on('prizeWithdrawn', (data) => {
   	});
   }, 650);
 	setTimeout(() => {
-		gifContainer.src="images/transparent.png";
+		gifContainer.src="images/payme.gif";
 	}, 2000);
 
 })
