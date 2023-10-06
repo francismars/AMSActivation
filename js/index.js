@@ -1,4 +1,5 @@
-let serverIP = "wss://170.75.162.217";
+
+let serverIP = "wss://amsactivation.chain-duel.com";
 let serverPORT = "3001";
 const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
