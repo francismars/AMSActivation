@@ -88,11 +88,12 @@ socket.on("invoicePaid", body => {
         qrcodeContainer.src="images/paidqrs/reward_"+randReward+".jpg";
 			}, 650, qrcodeContainer);
 			setTimeout(() => {
-				gifContainer.src="images/payme.gif";
+        gifContainer.src="images/transparent.png";
 			}, 2000, gifContainer);
 			invoicesPaidList.push(key)
 			//console.log(invoicesPaidList)
 			setTimeout(() => {
+        gifContainer.src="images/payme.gif";
 				qrcodeContainer.innerHTML = "";
 				let keyIndex = invoicesPaidList.indexOf(keyTemp)
 				//console.log(keyTemp)
