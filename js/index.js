@@ -134,7 +134,7 @@ socket.on("invoicePaid", body => {
 					notetextContainer.innerText = "";
 					noteContainer.classList.add("hidden");
 				}
-			}, 10000000,keyTemp);
+			}, 21000,keyTemp);
 		}
 	}
 	invoicesPaidAmount++;
