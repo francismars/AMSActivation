@@ -16,6 +16,7 @@ body{
 	padding: 1.5cqw;
 	margin-top: 0cqw;
 	box-sizing: border-box;
+  object-fit: cover;
 }
 
 .PayLinkdiv{

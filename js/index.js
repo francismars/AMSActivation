@@ -73,7 +73,8 @@ let invoicesPaidAmount = 0;
 let invoicesPaidList = []
 
 let numberOfImages = 30
-let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
+let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+(i<24?".jpg":".gif"))
+console.log(imagesList);
 socket.on("invoicePaid", body => {
 	console.log(body)
 	let paidlnurlid = body.lnurlp;
@@ -95,7 +96,7 @@ socket.on("invoicePaid", body => {
         qrcodeContainer.style.padding = "0";
 				imagesList.splice(randRewardIndex,1)
 				if(imagesList.length<1){
-					imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
+					imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+(i<24?".jpg":".gif"))
 				}
 				let noteContainer = document.getElementById(keyTemp+"note");
 				let notetextContainer = document.getElementById(keyTemp+"notetext");
