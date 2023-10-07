@@ -2,6 +2,10 @@ let serverIP = "ws://170.75.162.217";
 let serverPORT = "3001";
 const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
+if(window.location.protocol == 'https:') {
+  location.href =   location.href.replace("https://", "http://");
+}
+
 socket.on("connect", () => {
     console.log(`connected with id: ${socket.id}`)
 })
@@ -86,11 +90,11 @@ socket.on("invoicePaid", body => {
 		if(lnurlid==paidlnurlid){
      		let keyTemp = key
 			console.log("Paid for "+keyTemp);
-			let qrcodeContainer = document.getElementById(keyTemp);	  		
+			let qrcodeContainer = document.getElementById(keyTemp);
 			let gifContainer = document.getElementById(keyTemp+"gif");
 			gifContainer.src="images/paidqr.gif";
       		setTimeout(() => {
-				let randRewardIndex = Math.floor(Math.random() * imagesList.length); 
+				let randRewardIndex = Math.floor(Math.random() * imagesList.length);
 				qrcodeContainer.src="images/paidqrs/"+imagesList[randRewardIndex];
 				imagesList.splice(randRewardIndex,1)
 				if(imagesList.length<1){
