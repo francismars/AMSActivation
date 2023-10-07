@@ -71,6 +71,9 @@ socket.on('rescreateWithdrawal', (data) => {
 
 let invoicesPaidAmount = 0;
 let invoicesPaidList = []
+
+let numberOfImages = 30
+let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
 socket.on("invoicePaid", body => {
 	console.log(body)
 	let paidlnurlid = body.lnurlp;
@@ -78,15 +81,19 @@ socket.on("invoicePaid", body => {
 		let value = payLinksDict[key];
 		let lnurlid = value.id
 		if(lnurlid==paidlnurlid){
-      let keyTemp = key
+     		let keyTemp = key
 			console.log("Paid for "+keyTemp);
-			let qrcodeContainer = document.getElementById(keyTemp);
-      let randReward = Math.floor(Math.random() * 30) + 1;
+			let qrcodeContainer = document.getElementById(keyTemp);	  		
 			let gifContainer = document.getElementById(keyTemp+"gif");
 			gifContainer.src="images/paidqr.gif";
-      setTimeout(() => {
-        qrcodeContainer.src="images/paidqrs/reward_"+randReward+".jpg";
-			}, 650, qrcodeContainer);
+      		setTimeout(() => {
+				let randRewardIndex = Math.floor(Math.random() * imagesList.length); 
+				qrcodeContainer.src="images/paidqrs/"+imagesList[randRewardIndex];
+				imagesList.splice(randRewardIndex,1)
+				if(imagesList.length<1){
+					imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
+				}
+				}, 650, qrcodeContainer);
 			setTimeout(() => {
 				gifContainer.src="images/payme.gif";
 			}, 2000, gifContainer);
@@ -121,30 +128,29 @@ socket.on("invoicePaid", body => {
 				break
 			}
 		}
-		socket.emit('createWithdrawal', {"amount": 3000, "maxWithdrawals": 1});
+		socket.emit('createWithdrawal', {"amount": Math.floor(Math.random() * 2000) + 2000, "maxWithdrawals": 1});
 	}
 })
 
 socket.on('prizeWithdrawn', (data) => {
-  console.log(data)
+  	console.log(data)
 	let value = payLinksDict[qrToReplaceid];
 	let paidlnurlid = data.lnurlw;
 	let qrcodeContainer = document.getElementById(qrToReplaceid);
 	let gifContainer = document.getElementById(qrToReplaceid+"gif");
 	qrToReplaceid = -1;
 	gifContainer.src="images/paidqr.gif";
-  setTimeout(() => {
-    qrcodeContainer.innerHTML = "";
-  	new QRious({
-  		element: qrcodeContainer,
-  		size: 800,
-  		value: value.lnurl,
-  		foreground: "white",
-  		backgroundAlpha: 0
-  	});
-  }, 650);
+	setTimeout(() => {
+		qrcodeContainer.innerHTML = "";
+		new QRious({
+			element: qrcodeContainer,
+			size: 800,
+			value: value.lnurl,
+			foreground: "white",
+			backgroundAlpha: 0
+		});
+	}, 650);
 	setTimeout(() => {
 		gifContainer.src="images/payme.gif";
 	}, 2000);
-
 })
