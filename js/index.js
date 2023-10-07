@@ -1,5 +1,4 @@
-
-let serverIP = "wss://amsactivation.chain-duel.com";
+let serverIP = "ws://170.75.162.217";
 let serverPORT = "3001";
 const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
@@ -89,12 +88,11 @@ socket.on("invoicePaid", body => {
         qrcodeContainer.src="images/paidqrs/reward_"+randReward+".jpg";
 			}, 650, qrcodeContainer);
 			setTimeout(() => {
-        gifContainer.src="images/transparent.png";
+				gifContainer.src="images/payme.gif";
 			}, 2000, gifContainer);
 			invoicesPaidList.push(key)
 			//console.log(invoicesPaidList)
 			setTimeout(() => {
-        gifContainer.src="images/payme.gif";
 				qrcodeContainer.innerHTML = "";
 				let keyIndex = invoicesPaidList.indexOf(keyTemp)
 				//console.log(keyTemp)
