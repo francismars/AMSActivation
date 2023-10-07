@@ -77,6 +77,8 @@ let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
 socket.on("invoicePaid", body => {
 	console.log(body)
 	let paidlnurlid = body.lnurlp;
+	let paidlnurlnote = body.comment;
+	console.log(paidlnurlnote)
 	for(var key in payLinksDict) {
 		let value = payLinksDict[key];
 		let lnurlid = value.id
