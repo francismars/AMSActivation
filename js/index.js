@@ -74,7 +74,6 @@ let invoicesPaidList = []
 
 let numberOfImages = 30
 let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+(i<24?".jpg":".gif"))
-console.log(imagesList);
 socket.on("invoicePaid", body => {
 	console.log(body)
 	let paidlnurlid = body.lnurlp;
