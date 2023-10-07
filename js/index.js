@@ -2,10 +2,6 @@ let serverIP = "ws://170.75.162.217";
 let serverPORT = "3001";
 const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
-if(window.location.protocol != 'http:') {
-  location.href = location.href.replace("https://", "http://");
-}
-
 socket.on("connect", () => {
     console.log(`connected with id: ${socket.id}`)
 })
@@ -96,6 +92,7 @@ socket.on("invoicePaid", body => {
       		setTimeout(() => {
 				let randRewardIndex = Math.floor(Math.random() * imagesList.length);
 				qrcodeContainer.src="images/paidqrs/"+imagesList[randRewardIndex];
+        qrcodeContainer.style.padding = "0";
 				imagesList.splice(randRewardIndex,1)
 				if(imagesList.length<1){
 					imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
@@ -108,7 +105,7 @@ socket.on("invoicePaid", body => {
 				}
 				}, 650, qrcodeContainer);
 			setTimeout(() => {
-				gifContainer.src="images/payme.gif";
+				gifContainer.src="images/transparent.png";
 			}, 2000, gifContainer);
 			invoicesPaidList.push(key)
 			//console.log(invoicesPaidList)
@@ -128,13 +125,15 @@ socket.on("invoicePaid", body => {
 					foreground: "white",
 					backgroundAlpha: 0
 				});
+        gifContainer.src="images/payme.gif";
+        qrcodeContainer.style.padding = "1.5cqw";
 				let noteContainer = document.getElementById(keyTemp+"note");
 				let notetextContainer = document.getElementById(keyTemp+"notetext");
 				if(!noteContainer.classList.contains("hidden")){
 					notetextContainer.innerText = "";
 					noteContainer.classList.add("hidden");
 				}
-			}, 10000,keyTemp);
+			}, 10000000,keyTemp);
 		}
 	}
 	invoicesPaidAmount++;

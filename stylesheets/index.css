@@ -42,3 +42,29 @@ body{
 	gap: 1vw;
 	padding: 1vw;
 }
+
+
+
+.note {
+    position: absolute;
+    bottom: 0;
+    background-image: linear-gradient(#ffffff00, #00000063);
+    width:100%;
+    padding: 3vw 2vw 1.1vw 1.2vw;
+    text-align: left;
+    box-sizing: border-box;
+    font-size:1.5vw;
+    font-family: sans-serif;
+    letter-spacing: 0.1vw;
+}
+
+.note p{
+    margin:0vw;
+}
+
+.note .label{
+    font-size:1vw;
+    letter-spacing: 0.15vw;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
