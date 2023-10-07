@@ -13,7 +13,7 @@ socket.on('resPayLinks', (data) => {
 	//console.log(data)
 	for(let i=0;i<data.length;i++){
 		//console.log(data[i])
-		payLinksDict[data[i].description]={"lnurl":data[i].lnurl,"id":data[i].id}
+		payLinksDict["PayLink"+(i+1)]={"lnurl":data[i].lnurl,"id":data[i].id}
 	}
 	//console.log(payLinksDict)
 	loadPayLinksDOM()
