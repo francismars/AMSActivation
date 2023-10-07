@@ -2,6 +2,14 @@ body{
     background-color: black;
 }
 
+.note p{
+	color: white;
+}
+
+.hidden {
+	display: none;
+}
+
 .qrcode{
 	width: 100%;
 	height: 100%;

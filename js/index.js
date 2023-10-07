@@ -77,7 +77,8 @@ let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
 socket.on("invoicePaid", body => {
 	console.log(body)
 	let paidlnurlid = body.lnurlp;
-	let paidlnurlnote = body.comment;
+	let paidlnurlnote;
+	body.comment == null ? paidlnurlnote = "" : paidlnurlnote = body.comment[0];
 	console.log(paidlnurlnote)
 	for(var key in payLinksDict) {
 		let value = payLinksDict[key];
@@ -94,6 +95,12 @@ socket.on("invoicePaid", body => {
 				imagesList.splice(randRewardIndex,1)
 				if(imagesList.length<1){
 					imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+".jpg")
+				}
+				let noteContainer = document.getElementById(keyTemp+"note");
+				let notetextContainer = document.getElementById(keyTemp+"notetext");
+				if(paidlnurlnote!=""){
+					notetextContainer.innerText = paidlnurlnote;
+					noteContainer.classList.remove("hidden");
 				}
 				}, 650, qrcodeContainer);
 			setTimeout(() => {
@@ -117,6 +124,12 @@ socket.on("invoicePaid", body => {
 					foreground: "white",
 					backgroundAlpha: 0
 				});
+				let noteContainer = document.getElementById(keyTemp+"note");
+				let notetextContainer = document.getElementById(keyTemp+"notetext");
+				if(!noteContainer.classList.contains("hidden")){
+					notetextContainer.innerText = "";
+					noteContainer.classList.add("hidden");
+				}
 			}, 10000,keyTemp);
 		}
 	}
