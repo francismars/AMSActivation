@@ -2,6 +2,12 @@ let serverIP = "ws://170.75.162.217";
 let serverPORT = "3001";
 const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
+if (location.protocol !== 'http:') {
+  if (location.protocol !== 'file:') {
+    location.replace(`http:${location.href.substring(location.protocol.length)}`);
+  }
+}
+
 socket.on("connect", () => {
     console.log(`connected with id: ${socket.id}`)
 })
@@ -186,5 +192,5 @@ socket.on('prizeWithdrawn', (data) => {
 	}, 650);
 	setTimeout(() => {
 		gifContainer.src="images/payme.gif";
-	}, 2000);
+	}, 1100);
 })
