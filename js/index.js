@@ -2,12 +2,6 @@ let serverIP = "ws://170.75.162.217";
 let serverPORT = "3001";
 const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
-if (location.protocol !== 'http:') {
-  if (location.protocol !== 'file:') {
-    location.replace(`http://amsterdam.chain-duel.com/`);
-  }
-}
-
 socket.on("connect", () => {
     console.log(`connected with id: ${socket.id}`)
 })
