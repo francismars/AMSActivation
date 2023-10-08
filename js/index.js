@@ -74,6 +74,22 @@ let invoicesPaidList = []
 
 let numberOfImages = 30
 let imagesList = Array(numberOfImages).fill().map((v,i)=>"reward_"+(i+1)+(i<24?".jpg":".gif"))
+
+
+
+function preloadImage(imageName){
+    let url = "images/"+imageName;
+    var img=new Image();
+    img.src=url;
+}
+
+for (let imageID in imagesList){
+    preloadImage("paidqrs/"+imagesList[imageID]);
+}
+
+preloadImage("frame.gif");
+preloadImage("paidqr.gif");
+
 socket.on("invoicePaid", body => {
 	console.log(body)
 	let paidlnurlid = body.lnurlp;
