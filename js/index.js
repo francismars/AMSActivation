@@ -142,7 +142,7 @@ socket.on("invoicePaid", body => {
 					backgroundAlpha: 0
 				});
         gifContainer.src="images/payme.gif";
-        qrcodeContainer.style.padding = "1.5cqw";
+        qrcodeContainer.style.padding = "2.5cqh";
 				let noteContainer = document.getElementById(keyTemp+"note");
 				let notetextContainer = document.getElementById(keyTemp+"notetext");
 				if(!noteContainer.classList.contains("hidden")){
