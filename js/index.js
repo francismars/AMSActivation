@@ -4,7 +4,7 @@ const socket = io(serverIP+":"+serverPORT, { transports : ['websocket'] });
 
 if (location.protocol !== 'http:') {
   if (location.protocol !== 'file:') {
-    location.replace(`http:${location.href.substring(location.protocol.length)}`);
+    location.replace(`http://amsterdam.chain-duel.com/`);
   }
 }
 
