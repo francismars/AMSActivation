@@ -101,6 +101,7 @@ socket.on("invoicePaid", body => {
 		let lnurlid = value.id
 		if(lnurlid==paidlnurlid){
      		let keyTemp = key
+			if(keyTemp == qrToReplaceid) qrToReplaceid = -1;
 			console.log("Paid for "+keyTemp);
 			let qrcodeContainer = document.getElementById(keyTemp);
 			let gifContainer = document.getElementById(keyTemp+"gif");
