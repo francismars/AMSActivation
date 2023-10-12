@@ -30,6 +30,9 @@ function loadPayLinksDOM() {
     let withdrawalProb = 0.3
     if (Math.random() < withdrawalProb) {
         let qrToReplace = Math.floor(Math.random() * 6) + 1;
+        // overide for 2 screens
+        qrToReplace = Math.floor(Math.random() * 2) + 1;
+
         qrToReplaceid = "PayLink" + qrToReplace
         socket.emit('createWithdrawal', {
             "amount": 2000,
@@ -166,6 +169,9 @@ socket.on("invoicePaid", body => {
     if (invoicesPaidAmount % 4 == 0 && qrToReplaceid == -1) {
         while (true) {
             let qrToReplace = Math.floor(Math.random() * 6) + 1;
+            // overide for 2 screens
+            qrToReplace = Math.floor(Math.random() * 2) + 1;
+
             qrToReplaceid = "PayLink" + qrToReplace
             let keyIndex = invoicesPaidList.indexOf(qrToReplaceid)
             if (keyIndex == -1) {
