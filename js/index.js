@@ -1,4 +1,4 @@
-let serverIP = "ws://170.75.162.217";
+let serverIP = "ws://170.75.175.190";
 let serverPORT = "3001";
 const socket = io(serverIP + ":" + serverPORT, {
     transports: ['websocket']
