@@ -76,8 +76,8 @@ socket.on('rescreateWithdrawal', (data) => {
         element: qrcodeContainer,
         size: 800,
         value: data.lnurl,
-        foreground: "orange",
-        background: "black"
+        foreground: "white",
+        background: "#001AFF"
     });
 });
 
