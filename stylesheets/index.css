@@ -55,6 +55,7 @@ body{
     width: 100vw;
     display: flex;
     justify-content: space-around;
+    box-sizing: border-box;
 }
 
 
