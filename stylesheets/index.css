@@ -46,6 +46,15 @@ body{
 }
 
 
+/* Bringing Bitcoin - 3 QR Codes */
+#mainDiv {
+    max-width: 100vw;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+
 
 .note {
     position: absolute;
